@@ -4,48 +4,73 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
+// In-memory flag that tracks whether the intro animation has completed.
+// Automatically resets on full page reload / refresh / new tab.
+let hasIntroFinished = false;
+
 export default function LogoIntro() {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
   const isHomePage = pathname === "/" || pathname === "/home";
 
-  const [stage, setStage] = useState<"initial" | "revealing" | "gliding" | "settled">("initial");
   const [mounted, setMounted] = useState(false);
+  const [stage, setStage] = useState<"initial" | "revealing" | "gliding" | "settled">(
+    hasIntroFinished ? "settled" : "initial"
+  );
 
   useEffect(() => {
     setMounted(true);
 
+    // Clean up any residual sessionStorage key
+    if (typeof window !== "undefined") {
+      try {
+        sessionStorage.removeItem("cocpit_intro_played");
+      } catch {}
+    }
+
     if (shouldReduceMotion) {
+      setStage("settled");
+      hasIntroFinished = true;
+      return;
+    }
+
+    // If intro already completed, stay settled on any route
+    if (hasIntroFinished) {
       setStage("settled");
       return;
     }
 
-    if (isHomePage) {
-      setStage("initial");
-
-      // Phase 1: Initial black screen hold (500ms) -> Start blur-to-clear reveal
-      const timer1 = setTimeout(() => {
-        setStage("revealing");
-      }, 500);
-
-      // Phase 2: After becoming clear at center (3000ms) -> Start unhurried shrink & glide to bottom-right
-      const timer2 = setTimeout(() => {
-        setStage("gliding");
-      }, 3000);
-
-      // Phase 3: Settle at bottom-right corner & reveal website content (5500ms)
-      const timer3 = setTimeout(() => {
-        setStage("settled");
-      }, 5500);
-
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-      };
-    } else {
+    // If on a route other than home, skip intro and stay settled
+    if (!isHomePage) {
       setStage("settled");
+      hasIntroFinished = true;
+      return;
     }
+
+    // On home page: start the animation sequence
+    setStage("initial");
+
+    // Phase 1: Initial black screen hold (500ms) -> Start blur-to-clear reveal
+    const timer1 = setTimeout(() => {
+      setStage("revealing");
+    }, 500);
+
+    // Phase 2: After becoming clear at center (3000ms) -> Start unhurried shrink & glide to bottom-right
+    const timer2 = setTimeout(() => {
+      setStage("gliding");
+    }, 3000);
+
+    // Phase 3: Settle at bottom-right corner & reveal website content (5500ms)
+    const timer3 = setTimeout(() => {
+      setStage("settled");
+      hasIntroFinished = true;
+    }, 5500);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
   }, [pathname, isHomePage, shouldReduceMotion]);
 
   if (!mounted) return null;

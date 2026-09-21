@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const navLinks = [
@@ -88,12 +89,12 @@ export default function Footer({ className = "" }: { className?: string }) {
         >
           {navLinks.map((link) => (
             <li key={link.label} className="h-[16px]">
-              <a
+              <Link
                 href={link.href}
                 className="font-sans font-normal text-[12px] leading-[16px] tracking-[0px] hover:text-ink transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </motion.ul>
@@ -112,12 +113,12 @@ export default function Footer({ className = "" }: { className?: string }) {
         >
           {legalLinks.map((link) => (
             <li key={link.label} className="h-[16px]">
-              <a
+              <Link
                 href={link.href}
                 className="font-sans font-normal text-[12px] leading-[16px] tracking-[0px] hover:text-ink transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </motion.ul>

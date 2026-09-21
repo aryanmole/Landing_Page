@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
@@ -114,7 +115,7 @@ export default function Sidebar() {
               (pathname === "/" && item.href === "/home");
 
             return (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-2 rounded-full text-sm font-normal transition-all duration-200 ${
@@ -125,7 +126,7 @@ export default function Sidebar() {
               >
                 {item.icon}
                 <span>{item.label}</span>
-              </a>
+              </Link>
             );
           })}
         </nav>
