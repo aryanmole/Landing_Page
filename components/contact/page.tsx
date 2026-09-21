@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Footer from "../home/Footer";
 
 const footerNavItems = [
@@ -53,7 +54,11 @@ export default function ContactPage() {
         {/* Hero + form */}
         <section className="box-border flex w-full flex-col items-center border-b border-[#FFECE6]/[0.07] pt-0 pb-0">
   {/* Heading */}
-  <h1
+  <motion.h1
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
     className="w-full max-w-[535px] text-center font-sans text-[36px] sm:text-[48px] font-medium leading-[42px] sm:leading-[52px] tracking-[0px] text-[#FFECE6]"
     style={{
       fontFamily: "var(--font-dm-sans)",
@@ -68,10 +73,14 @@ export default function ContactPage() {
     Be curious.
     <br />
     Let&apos;s invent what&apos;s next.
-  </h1>
+  </motion.h1>
 
   {/* Description */}
-  <p
+  <motion.p
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
     className="mt-[16px] w-full max-w-[542px] text-center font-sans text-[14px] font-light leading-[18px] tracking-[0px] text-[#B8ADA8]"
     style={{
       fontFamily: "var(--font-dm-sans)",
@@ -86,10 +95,14 @@ export default function ContactPage() {
     Whether you&apos;re exploring a new idea, building ambitious technology,
     looking for your next opportunity, or simply curious about what we&apos;re
     creating — we&apos;re listening.
-  </p>
+  </motion.p>
 
   {/* Form */}
-  <form
+  <motion.form
+    initial={{ opacity: 0, y: 25, scale: 0.98 }}
+    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+    viewport={{ once: true, margin: "-40px" }}
+    transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
     onSubmit={handleSubmit}
     className="mt-[16px] flex h-[208px] w-[560px] flex-col items-center gap-[8px] pt-[24px]"
   >
@@ -196,7 +209,7 @@ export default function ContactPage() {
         Thanks — we&apos;ll be in touch.
       </p>
     )}
-  </form>
+  </motion.form>
 </section>
 
         {/* Footer */}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
@@ -164,9 +165,11 @@ export default function LogoIntro() {
 
       {/* Fixed Bottom-Right Corner Badge — Displayed on all pages or after intro completes */}
       {stage === "settled" && (
-        <div
+        <Link
+          href="/home"
           className="fixed right-6 bottom-6 md:right-10 md:bottom-10 z-50 cursor-pointer hover:scale-110 active:scale-95 transition-all duration-300 group"
-          title="Cocpit Logo"
+          title="Go to Home"
+          aria-label="Go to Home"
         >
           <div className="absolute -inset-2 rounded-full bg-[#EC6229]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <svg
@@ -187,7 +190,7 @@ export default function LogoIntro() {
               fill="#FFECE6"
             />
           </svg>
-        </div>
+        </Link>
       )}
     </>
   );

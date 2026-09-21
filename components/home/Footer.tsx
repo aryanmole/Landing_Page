@@ -46,13 +46,14 @@ export default function Footer({ className = "" }: { className?: string }) {
           }}
           className="w-full md:w-[323.33px] h-[132px] flex flex-col items-start gap-[16px] pb-[42px] opacity-100"
         >
-          <div className="flex items-center gap-4">
+          <Link href="/home" className="flex items-center gap-4 group cursor-pointer" title="Cocpit Home">
             <svg
               width="22"
               height="25"
               viewBox="0 0 22 25"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="group-hover:scale-105 transition-transform duration-200"
             >
               <path
                 d="M21.5625 0.00012207V4.92663C16.1992 4.92663 15.3201 7.21049 15.3122 10.0276V10.0641C15.3122 11.5466 15.324 12.3992 15.2984 13.5741L9.08361 13.6096C9.08361 13.6096 9.04419 12.8497 9.04419 11.6037C9.04419 11.3563 9.04518 11.0902 9.04912 10.8073C9.05207 10.6003 9.04912 10.3785 9.04419 10.1459V7.42734C9.20779 4.96803 9.71534 3.36825 11.9969 1.77438C12.8119 1.20563 14.1956 0.676309 15.4551 0.412142C16.8191 0.12629 18.7458 0.00012207 20.5907 0.00012207H21.5634H21.5625Z"
@@ -64,10 +65,10 @@ export default function Footer({ className = "" }: { className?: string }) {
               />
             </svg>
 
-            <span className="text-base font-bold uppercase tracking-wide text-ink">
+            <span className="text-base font-bold uppercase tracking-wide text-ink group-hover:text-accent transition-colors">
               Cocpit
             </span>
-          </div>
+          </Link>
           <p className="w-full font-sans font-normal text-[12px] leading-[16px] tracking-[0px] text-[#B8ADA8]">
             We believe the next generation of technology will come from
             questioning what exists, exploring what&apos;s possible, and

@@ -3,6 +3,7 @@
 import { useState, type FormEvent, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import Footer from "@/components/home/Footer";
 
 const roleTitles: Record<string, string> = {
@@ -45,7 +46,12 @@ function ApplyFormContent({ roleTitle, onCancel }: ApplyPageProps) {
 
   if (submitted) {
     return (
-      <div className="flex w-full flex-col items-center gap-6 py-24 text-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        className="flex w-full flex-col items-center gap-6 py-24 text-center"
+      >
         <div className="h-12 w-12 rounded-full bg-[#EC6229]/20 border border-[#EC6229] flex items-center justify-center text-[#EC6229] text-xl">
           ✓
         </div>
@@ -63,7 +69,7 @@ function ApplyFormContent({ roleTitle, onCancel }: ApplyPageProps) {
         >
           Back to Careers
         </button>
-      </div>
+      </motion.div>
     );
   }
 
@@ -94,7 +100,10 @@ function ApplyFormContent({ roleTitle, onCancel }: ApplyPageProps) {
       </button>
 
       {/* Form Container */}
-      <form
+      <motion.form
+        initial={{ opacity: 0, y: 25, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         onSubmit={handleSubmit}
         className="flex w-full flex-col items-center gap-10"
       >
@@ -208,7 +217,7 @@ function ApplyFormContent({ roleTitle, onCancel }: ApplyPageProps) {
         >
           Submit application
         </button>
-      </form>
+      </motion.form>
     </div>
   );
 }

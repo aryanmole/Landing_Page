@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 
 const navItems = [
   {
@@ -102,12 +101,7 @@ export default function Sidebar() {
 
   return (
     <div className="hidden lg:flex fixed left-[40px] top-1/2 -translate-y-1/2 z-40">
-      <motion.aside
-        initial={{ opacity: 0, x: -15 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-        className="flex flex-col w-[213px] h-[252px] gap-[24px] rounded-[24px] p-[20px_16px]"
-      >
+      <aside className="flex flex-col w-[213px] h-[252px] gap-[24px] rounded-[24px] p-[20px_16px]">
         <nav className="flex flex-col gap-3 w-full">
           {navItems.map((item) => {
             const isActive =
@@ -130,7 +124,7 @@ export default function Sidebar() {
             );
           })}
         </nav>
-      </motion.aside>
+      </aside>
     </div>
   );
 }
