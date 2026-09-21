@@ -7,4 +7,6 @@ export const metadata: Metadata = {
     "Professional Networking Platform. Connect, discover opportunities, and grow professionally in one place.",
 };
 
-export default ProductDetail;
+export default function ProductDetailPage() {
+  return <ProductDetail />;
+}
