@@ -11,13 +11,14 @@ const navLinks = [
 ];
 
 const legalLinks = [
-  { href: "/", label: "Terms & Conditions" },
-  { href: "/", label: "User Policy" },
+  { href: "/terms-and-conditions", label: "Terms & Conditions" },
+  { href: "/privacy-policy", label: "User Policy" },
+  { href: "/community-guidelines", label: "Community Guidelines" },
 ];
 
-export default function Footer() {
+export default function Footer({ className = "" }: { className?: string }) {
   return (
-    <footer className="w-full flex flex-col items-center gap-6 pt-24 md:pt-[100px] pb-16 bg-bg font-sans">
+    <footer className={`w-full flex flex-col items-center gap-6 pt-24 md:pt-[100px] pb-16 bg-bg font-sans ${className}`}>
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -30,7 +31,7 @@ export default function Footer() {
             },
           },
         }}
-        className="w-full max-w-[832px] flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0 mx-auto"
+        className="w-full max-w-[832px] flex flex-col md:flex-row items-start gap-[40px] mx-auto"
       >
         {/* Brand column */}
         <motion.div

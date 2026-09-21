@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, PT_Serif } from "next/font/google";
+import Sidebar from "@/components/Sidebar";
+import LogoIntro from "@/components/home/LogoIntro";
 import "./globals.css";
 
 const ptSerif = PT_Serif({
@@ -31,7 +33,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${dmSans.variable} ${ptSerif.variable}`}>
-      <body className="font-sans bg-bg text-ink antialiased">{children}</body>
+      <body className="font-sans bg-bg text-ink antialiased">
+        <Sidebar />
+        <LogoIntro />
+        {children}
+      </body>
     </html>
   );
 }

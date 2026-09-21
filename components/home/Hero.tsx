@@ -10,7 +10,7 @@ const footnotes = [
 
 export default function Hero() {
   return (
-    <section id="home" className="flex flex-col items-center gap-6">
+    <section id="home" className="flex flex-col items-center gap-6 pt-[60px]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
